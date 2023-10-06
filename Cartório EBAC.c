@@ -3,7 +3,9 @@
 #include <locale.h> // Biblioteca de textos por região
 #include <string.h> // biblioteca que cuida das strings
 
-int registrar()
+
+
+int registrar() // função int para registrar alunos e funcionarios da empresa
 {
 	char arquivo[40];
     char cpf[40];
@@ -47,7 +49,7 @@ int registrar()
     
 }
 
-int consultar()
+int consultar() // função int para consultar os alunos e funcionarios registrados no programa
 {
 	char cpf[40];
 	char arquivo[200];
@@ -62,14 +64,18 @@ int consultar()
 	
 	if(file==NULL)
      {
-		printf("Não foi possivel encontrar o usuario");
+		printf("Não foi possivel encontrar o usuario\n\n");
+		system("pause");
+		system("cls");
+		return 0;
 	
 	 }
-
-    printf("Seus dados são o seguinte:\n\n");	 
-          
-	while(fgets(arquivo, 200, file)!= NULL)
+     
+    printf("Seus dados são o seguinte:\n\n");
+		
+	while(fgets(arquivo, 200, file)!= NULL) //
 	{
+		
 		printf("%s", arquivo);
 	
 	}
@@ -79,7 +85,7 @@ int consultar()
 	return 0;
 	
 }
-int deletar()
+int deletar() // função para deletar e registrar os alunos e funcionarios da empresa
 {   
     char cpf[40];  
     printf("Escolha o usuário que deseja deletar: ");
@@ -119,9 +125,29 @@ int main()
 {
    int opcao=0; //definindo a variavel
    int x=1; // outra reserva de espaço na memoria para a variavel relacionada a repetição
+   char senhalogin[10]="0";
+   int senha;
    
-   for(x=1; x=1;) // condicional de laço, para o ciclo se repetir e o programa principal main não acabar, mas retornar ao menu principal apos o termino
+   
+   setlocale(LC_ALL, "Portuguese");
+   printf("### Cartório EBAC ###\n\n");
+   while(1)
    {
+   	
+
+   printf("Login do administrador!\n\nDigite a sua senha: ");
+   scanf("%s", senhalogin);
+   system("cls");
+   
+   
+   senha=strcmp(senhalogin, "admin"); // esse comando "strcmp" compara duas funções, nesse caso a "senhalogin" que recebera a entrada do usuario, e o valor "admin"(ou string admin)
+                                         
+   
+   if(senha == 0) //usei senha como uma variavel que foi igualada ao comando strcmp(senhalogin, "admin"), se caso esse comando ou comparação for 0, a senha sera 0 também, e condinado um comando a esse resultado
+   {
+  
+     for(x=1; x==1;) // condicional de laço, para o ciclo se repetir e o programa principal main não acabar, mas retornar ao menu principal apos o termino
+      {
    	  
 	    system("cls");
 	  	  
@@ -165,7 +191,22 @@ int main()
    	        system("pause");
    	        break;
 	 	}    	 // fim da seleção  
-   }
+      }   
+    }
+    
+    else
+	{
+    
+        printf("\nSenha incorreta\n\n");
+        system("pause");
+        system("cls");
+        
+	}
+	}
+
+	
+	
+	
 }
 
 
